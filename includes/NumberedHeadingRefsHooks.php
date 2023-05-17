@@ -22,9 +22,7 @@ class NumberedHeadingRefsHooks implements GetDoubleUnderscoreIDsHook, ParserAfte
 	}
 
 	public function onParserAfterParse( $parser, &$text, $stripState ) {
-		// Using getProperty rather than getPageProperty for MW <1.38 compatibility
-		$propVal = $parser->getOutput()->getProperty(self::MAGIC_WORD_NHR);
-		if ( $propVal === null || $propVal === false ) {
+		if ( $parser->getOutput()->getPageProperty(self::MAGIC_WORD_NHR) === null ) {
 			return;
 		}
 
